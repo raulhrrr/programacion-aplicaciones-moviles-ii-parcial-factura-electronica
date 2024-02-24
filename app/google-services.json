@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "376923393878",
+    "project_id": "factura-electronica-1b066",
+    "storage_bucket": "factura-electronica-1b066.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:376923393878:android:2925cab41640bacb7190f7",
+        "android_client_info": {
+          "package_name": "com.uniagustiniana.programacion_aplicaciones_moviles_factura_electronica"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlnzc0msJhDRd2rMszFVO00DAifxEApYI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

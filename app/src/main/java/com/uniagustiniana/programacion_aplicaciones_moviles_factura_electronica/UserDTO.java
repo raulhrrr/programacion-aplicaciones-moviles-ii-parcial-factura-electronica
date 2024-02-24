@@ -22,4 +22,8 @@ public class UserDTO implements Serializable {
     public void setLastname(String lastname) {
         this.lastname = lastname;
     }
+
+    public String getFullName() {
+        return String.format("%s %s", name, lastname);
+    }
 }

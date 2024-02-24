@@ -1,7 +1,5 @@
 package com.uniagustiniana.programacion_aplicaciones_moviles_factura_electronica;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,23 +7,26 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.math.BigDecimal;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 import java.util.Objects;
 
 public class InvoicingActivity extends AppCompatActivity {
 
-    private final Map<String, BigDecimal> products = new HashMap<>();
+    private final CalculateInvoicing calculateInvoicing = new CalculateInvoicing();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_invoicing);
 
-        products.put("tomato", new BigDecimal("1000"));
-        products.put("onion", new BigDecimal("2000"));
+        TextView cuTomato = findViewById(R.id.cuTomato);
+        TextView cuOnion = findViewById(R.id.cuOnion);
+
+        cuTomato.setText(String.format(CalculateInvoicing.MESSAGE, calculateInvoicing.getProducts().get("tomato")));
+        cuOnion.setText(String.format(CalculateInvoicing.MESSAGE, calculateInvoicing.getProducts().get("onion")));
 
         Intent intent = getIntent();
         UserDTO user = (UserDTO) Objects.requireNonNull(intent.getSerializableExtra("user"));
@@ -33,9 +34,8 @@ public class InvoicingActivity extends AppCompatActivity {
         txtWelcome.setText(
                 String.format(
                         Locale.getDefault(),
-                        "Bienvenido(a) %s %s",
-                        user.getName(),
-                        user.getLastname()
+                        "Bienvenido(a) %s",
+                        user.getFullName()
                 ));
 
         Button btnBack = findViewById(R.id.btnBack);
@@ -56,9 +56,8 @@ public class InvoicingActivity extends AppCompatActivity {
         total.setText(
                 String.format(
                         Locale.getDefault(),
-                        "$ %s", qtTomatoNumber.multiply(products.get("tomato"))
-                        .add(qtOnionNumber.multiply(products.get("onion")))
-                )
-        );
+                        "$ %s",
+                        calculateInvoicing.calculateTotal(qtTomatoNumber, qtOnionNumber)
+                ));
     }
 }
