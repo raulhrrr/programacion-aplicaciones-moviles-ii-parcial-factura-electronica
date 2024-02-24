@@ -1,6 +1,8 @@
 package com.uniagustiniana.programacion_aplicaciones_moviles_factura_electronica;
 
-public class UserDTO {
+import java.io.Serializable;
+
+public class UserDTO implements Serializable {
 
     private String name;
     private String lastname;
